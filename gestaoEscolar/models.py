@@ -19,3 +19,11 @@ class matricula(models.Model):
 
     def __str__(self):
         return f"{self.aluno.nome} - {self.numero} - {self.status}"
+    
+class turma(models.Model):
+    nome = models.CharField(max_length=100, blank=True, null=True)
+    anoRegistro = models.IntegerField(blank=True, null=True)
+    periodo = models.CharField(max_length=20, choices=[('manhã', 'Manhã'), ('tarde', 'Tarde'), ('noite', 'Noite')], blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nome} - {self.ano} - {self.periodo}"
