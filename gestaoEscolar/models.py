@@ -26,7 +26,7 @@ class turma(models.Model):
     periodo = models.CharField(max_length=20, choices=[('manhã', 'Manhã'), ('tarde', 'Tarde'), ('noite', 'Noite')], blank=True, null=True)
 
     def __str__(self):
-        return f"{self.nome} - {self.ano} - {self.periodo}"
+        return f"{self.nome} - {self.anoRegistro} - {self.periodo}"
     
 class professores(models.Model):
     cpf = models.CharField(max_length=11, primary_key=True)
@@ -34,6 +34,9 @@ class professores(models.Model):
     email = models.EmailField(max_length=254, blank=True, null=True)
     data_nascimento = models.DateField(blank=True, null=True)
     endereco = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nome}"
 
 
     
