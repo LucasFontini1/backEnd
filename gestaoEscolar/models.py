@@ -48,5 +48,15 @@ class curso(models.Model):
     def __str__(self):
         return f"{self.nome} - {self.modalidade} - {self.carga_horaria} horas"
 
+class coordenador(models.Model):
+    cpf = models.CharField(max_length=11, primary_key=True)
+    nome = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField(max_length=254, blank=True, null=True)
+    data_nascimento = models.DateField(blank=True, null=True)
+    endereco = models.CharField(max_length=255, blank=True, null=True)
+    telefone = models.CharField(max_length=20, blank=True, null=True)
+    curso = models.ForeignKey('Curso', on_delete=models.PROTECT, blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.nome} - {self.curso.nome}"
     
