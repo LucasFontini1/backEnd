@@ -37,6 +37,23 @@ class nota(models.Model):
     def __str__(self):
         return f"{self.aluno} - {self.nota_aluno}/{self.nota_total}"
 
+class frequencia(models.Model):
+    data_presenca = models.DateField(verbose_name='Data:')
+    presenca_aluno = models.CharField(max_length=15, choices={('falta', 'Falta'), ('presente', 'Presente'), ('justificada', 'Justificada')})
+    aluno = models.ForeignKey('aluno', on_delete=models.PROTECT, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.aluno} - {self.data_presenca}, {self.presenca_aluno}"
+
+class disciplina(models.Model):
+    codigo_disciplina = models.CharField(max_length=15)
+    nome_disciplina = models.CharField(max_length=15)
+    carga_horaria = models.IntegerField(max_length=4)
+    turma = models.ForeignKey('turma', on_delete=models.PROTECT, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nome_disciplina}"
+
 class professores(models.Model):
     cpf = models.CharField(max_length=11, primary_key=True)
     nome = models.CharField(max_length=100, blank=True, null=True)
