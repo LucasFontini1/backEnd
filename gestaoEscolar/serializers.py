@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import aluno, matricula, turma, nota, frequencia, professores, curso, coordenador
+from .models import aluno, matricula, turma, nota, frequencia, disciplina, professores, curso, coordenador
 
 class AlunoSerializer(ModelSerializer):
     class Meta:
@@ -24,6 +24,11 @@ class NotaSerializer(ModelSerializer):
 class FrequenciaSerializer(ModelSerializer):
     class Meta:
         model = frequencia
+        fields = '__all__'
+
+class DisciplinaSerializer(ModelSerializer):
+    class Meta:
+        model = disciplina
         fields = '__all__'
 
 class ProfessoresSerializer(ModelSerializer):
