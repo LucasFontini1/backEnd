@@ -45,15 +45,25 @@ class frequencia(models.Model):
     def __str__(self):
         return f"{self.aluno} - {self.data_presenca}, {self.presenca_aluno}"
 
+class disciplina(models.Model):
+    codigo_disciplina = models.CharField(max_length=15)
+    nome_disciplina = models.CharField(max_length=15)
+    carga_horaria = models.IntegerField(max_length=4)
+    turma = models.ForeignKey('turma', on_delete=models.PROTECT, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nome_disciplina} - {self.carga_horaria} horas"
+
 class professores(models.Model):
     cpf = models.CharField(max_length=11, primary_key=True)
     nome = models.CharField(max_length=100, blank=True, null=True)
     email = models.EmailField(max_length=254, blank=True, null=True)
     data_nascimento = models.DateField(blank=True, null=True)
     endereco = models.CharField(max_length=255, blank=True, null=True)
+    disciplina = models.ForeignKey('disciplina', on_delete=models.PROTECT, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.nome}"
+        return f"{self.nome} - {self.disciplina}"
 
 class curso(models.Model):
     codigo_curso = models.CharField(max_length=50, primary_key=True)
