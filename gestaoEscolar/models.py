@@ -7,7 +7,8 @@ class aluno(models.Model):
     email = models.EmailField(max_length=254, blank=True, null=True)
     endereco = models.CharField(max_length=255, blank=True, null=True)
     matricula = models.ForeignKey('matricula', on_delete=models.CASCADE, blank=True, null=True)
-
+    turma = models.ForeignKey('turma', on_delete=models.PROTECT, blank=True, null=True)
+    
     def __str__(self):
         return f"{self.nome} "
     
@@ -23,7 +24,7 @@ class matricula(models.Model):
 class turma(models.Model):
     nome = models.CharField(max_length=100, blank=True, null=True)
     anoRegistro = models.IntegerField(blank=True, null=True)
-    periodo = models.CharField(max_length=20, choices=[('manhã', 'Manhã'), ('tarde', 'Tarde'), ('noite', 'Noite')], blank=True, null=True)
+    periodo = models.CharField(max_length=20, choices=[('manhã', 'Manhã'), ('tarde', 'Tarde'), ('noite', 'Noite'),('integral', 'Integral')], blank=True, null=True)
 
     def __str__(self):
         return f"{self.nome} - {self.anoRegistro} - {self.periodo}"
