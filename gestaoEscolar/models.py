@@ -28,7 +28,15 @@ class turma(models.Model):
 
     def __str__(self):
         return f"{self.nome} - {self.anoRegistro} - {self.periodo}"
-    
+
+class nota(models.Model):
+    nota_total = models.CharField(max_length=4)
+    nota_aluno = models.CharField(max_length=4)
+    aluno = models.ForeignKey('aluno', on_delete=models.PROTECT, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.aluno} - {self.nota_aluno}/{self.nota_total}"
+
 class professores(models.Model):
     cpf = models.CharField(max_length=11, primary_key=True)
     nome = models.CharField(max_length=100, blank=True, null=True)
@@ -60,4 +68,6 @@ class coordenador(models.Model):
 
     def __str__(self):
         return f"{self.nome} - {self.curso.nome}"
+
+
     
